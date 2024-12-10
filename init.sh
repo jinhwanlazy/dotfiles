@@ -39,8 +39,9 @@ install() {
     fi
 }
 
-echo "shell: " $SHELL
-echo "user: " $USER
+echo "USER: " $USER
+echo "SHELL: " $SHELL
+echo "OSTYPE: " $OSTYPE
 
 # use zsh 
 if [[ ! $SHELL =~ "zsh" ]]; then
@@ -53,8 +54,11 @@ fi
 # install miniconda
 if [ ! -d ~/miniconda3 ]; then
     mkdir -p ~/miniconda3
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-    bash ~/miniconda3/miniconda.sh 
+    case ${OSTYPE} in
+        darwin*) curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -o ~/miniconda3/miniconda.sh ;;
+        linux*) wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh ;;
+    esac
+    bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
     rm ~/miniconda3/miniconda.sh
 fi
 
