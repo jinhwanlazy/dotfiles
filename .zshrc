@@ -177,5 +177,9 @@ export NODE_VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -f ~/nodeenv_base/bin/activate ] && source ~/nodeenv_base/bin/activate
 # <<< conda initialize <<<
 
-eval "$(starship init zsh)"
+if command_exists starship; then
+    conda config --set changeps1 False
+    starship config conda.ignore_base false
+    eval "$(starship init zsh)"
+fi
 
