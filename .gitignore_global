@@ -1,0 +1,25 @@
+tags*
+
+# Node
+npm-debug.log
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# vi
+*~
+.ccls-cache/
+.clangd/
+
+# General
+log/
+*.log
+
+compile_commands.json
+GeneratedViewpoints.json
+ProcessedImage.txt
+# etc...
+#
