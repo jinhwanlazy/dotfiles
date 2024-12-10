@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 command_exist() {
     command -v "$1" >/dev/null 2>&1
@@ -13,8 +13,8 @@ install() {
     mkdir -p "$bak_dir/$(dirname $1)"
 
     # Check if source exists
-    if [ ! -d "$src_dir/$1" ]; then
-        echo "Error: Source directory $src_dir/$1 does not exist"
+    if [[ ! -e $src_dir/$1 ]]; then
+        echo "Error: Source file or directory $src_dir/$1 does not exist"
         return 1
     fi
 
@@ -30,7 +30,6 @@ install() {
     fi
 
     # Create symlink
-    echo "Creating symlink for $1"
     echo "Installing $src_dir/$1 -> $dst_dir/$1"
     ln -s "$src_dir/$1" "$dst_dir/$1"
     
@@ -39,6 +38,17 @@ install() {
         return 1
     fi
 }
+
+echo "shell: " $SHELL
+echo "user: " $USER
+
+# use zsh 
+if [[ ! $SHELL =~ "zsh" ]]; then
+    echo "changing shell"
+    sudo usermod --shell /usr/bin/zsh $USER
+    echo "login again and relaunch the script!"
+    exit 1
+fi
 
 # install miniconda
 if [ ! -d ~/miniconda3 ]; then
@@ -54,6 +64,11 @@ if ! command_exist cargo; then
     source $HOME/.cargo/env
 fi
 
+# cargo install starship --locked
+if ! command_exist starship; then
+    cargo install starship --locked
+fi
+
 ## install tinty
 if ! command_exist tinty; then
     cargo install tinty
@@ -61,4 +76,5 @@ if ! command_exist tinty; then
 fi
 
 install .config/nvim
-
+install .zshrc
+install .gitconfig

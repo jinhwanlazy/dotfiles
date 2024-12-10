@@ -1,31 +1,31 @@
 # oh-my-zsh
-export SHELL=/bin/zsh
-export ZSH=$HOME/.oh-my-zsh
-export UPDATE_ZSH_DAYS=30
-ENABLE_CORRECTION="true"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy-mm-dd"
-HISTSIZE=20000
-SAVEHIST=$HISTSIZE
-KEYTIMEOUT=1
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
+#export SHELL=/bin/zsh
+#export ZSH=$HOME/.oh-my-zsh
+#export UPDATE_ZSH_DAYS=30
+#ENABLE_CORRECTION="true"
+#COMPLETION_WAITING_DOTS="true"
+#HIST_STAMPS="yyyy-mm-dd"
+#HISTSIZE=20000
+#SAVEHIST=$HISTSIZE
+#KEYTIMEOUT=1
+#setopt hist_ignore_all_dups
+#setopt hist_ignore_space
 
 
 
 # Disable hostname completion. Fixing slow completion
-zstyle ':completion:*' hosts off
-
-# Plugins
-case ${OSTYPE} in
-    darwin*)
-        plugins=(git pip brew macos)
-    ;;
-    linux*)
-        plugins=(git pip)
-    ;;
-esac
-source $ZSH/oh-my-zsh.sh
+#zstyle ':completion:*' hosts off
+#
+## Plugins
+#case ${OSTYPE} in
+#    darwin*)
+#        plugins=(git pip brew macos)
+#    ;;
+#    linux*)
+#        plugins=(git pip)
+#    ;;
+#esac
+#source $ZSH/oh-my-zsh.sh
 
 precmd () {
   echo -n -e "\a"
@@ -75,16 +75,16 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
    eval "$(ssh-agent -s)"
 fi
 
-# prompt
-function get_pwd() {
-  echo "${PWD/$HOME/~}"
-}
-PROMPT='%{$fg[green]%}%n@%m %{$fg[blue]%}$(get_pwd) %{$reset_color%}$(git_prompt_info)
-$ %{$reset_color%}'
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}) %{$fg[yellow]%}✔"
+## prompt
+#function get_pwd() {
+#  echo "${PWD/$HOME/~}"
+#}
+#PROMPT='%{$fg[green]%}%n@%m %{$fg[blue]%}$(get_pwd) %{$reset_color%}$(git_prompt_info)
+#$ %{$reset_color%}'
+#ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+#ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+#ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
+#ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}) %{$fg[yellow]%}✔"
 
 
 ## vi mode
@@ -107,18 +107,25 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-if [[ $(hostname) =~ "^MacBook.*" ]]; then
-    base16_irblack
-elif [[ $(hostname) =~ "^DESKTOP.*" ]]; then
-    base16_irblack
-elif [ $(hostname) = "mato" ]; then
-    base16_dracula
-elif [ $(hostname) = "tiso" ]; then
-    base16_dracula
-elif [ $(hostname) = "knight" ]; then
-    base16_gruvbox-dark-pale
-else
-    base16_one-light
+#if [[ $(hostname) =~ "^MacBook.*" ]]; then
+#    base16_irblack
+#elif [[ $(hostname) =~ "^DESKTOP.*" ]]; then
+#    base16_irblack
+#elif [ $(hostname) = "mato" ]; then
+#    base16_dracula
+#elif [ $(hostname) = "tiso" ]; then
+#    base16_dracula
+#elif [ $(hostname) = "knight" ]; then
+#    base16_gruvbox-dark-pale
+#else
+#    base16_one-light
+#fi
+
+command_exist() {
+    command -v "$1" >/dev/null 2>&1
+}
+if command_exist tinty; then
+    tinty apply base16-dracula
 fi
 
 if whence dircolors >/dev/null; then
@@ -169,4 +176,6 @@ unset __conda_setup
 export NODE_VIRTUAL_ENV_DISABLE_PROMPT=1
 [ -f ~/nodeenv_base/bin/activate ] && source ~/nodeenv_base/bin/activate
 # <<< conda initialize <<<
+
+eval "$(starship init zsh)"
 
