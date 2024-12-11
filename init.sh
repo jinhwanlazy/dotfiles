@@ -61,6 +61,11 @@ if [[ ! $SHELL =~ "zsh" ]]; then
     exit 1
 fi
 
+# install p10k
+if [[ ! -d ~/powerlevel10k ]]; then
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+fi
+
 # install rust
 if ! command_exists cargo; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -82,6 +87,7 @@ if [ ! -d ~/miniforge3 ] || ! command_exists conda; then
     bash ~/miniforge3/miniforge.sh -b -u -p ~/miniforge3
     rm ~/miniforge3/miniforge.sh
 fi
+
 # install python packages
 conda install python=3.10
 conda install neovim pynvim nodejs=18.20.4

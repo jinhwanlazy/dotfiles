@@ -16,10 +16,10 @@ setopt SHARE_HISTORY             # Share history between all sessions.
 setopt INC_APPEND_HISTORY
 
 
-precmd () {
-  echo -n -e "\a"
-}  
-
+#precmd () {
+#  echo -n -e "\a"
+#}  
+#
 # OS specific settings
 case ${OSTYPE} in
     darwin*)
@@ -44,11 +44,11 @@ case ${OSTYPE} in
         alias ls='ls -GF --color=auto'
 
         if uname -r |grep -qi 'Microsoft' ; then
-            echo "Windows subsystem for linux"
+            #echo "Windows subsystem for linux"
             export DOCKER_HOST=localhost:2375
             export DISPLAY=localhost:0.0
         else
-            echo "Native Linux"
+            #echo "Native Linux"
         fi
     ;;
     cygwin*)
@@ -56,13 +56,14 @@ case ${OSTYPE} in
     ;;
 esac
 
+
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/bin:$HOME/.bin:$PATH"
 export EDITOR='vim'
 #export WORKON_HOME=$HOME/.virtualenvs
 
-if [ -z "$SSH_AUTH_SOCK" ]; then
-   eval "$(ssh-agent -s)"
-fi
+#if [ -z "$SSH_AUTH_SOCK" ]; then
+#   eval "$(ssh-agent -s)"
+#fi
 
 ## vi mode
 bindkey -v
@@ -124,6 +125,13 @@ fi
 [ -f ~/.claude ] && source ~/.claude
 
 
+# P10k
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# Conda
 CONDA_HOME=$HOME/miniforge3
 if [ ! -d $CONDA_HOME ]; then
     CONDA_HOME=$HOME/miniconda3
@@ -148,14 +156,6 @@ export NODE_VIRTUAL_ENV_DISABLE_PROMPT=1
 fi
 
 
-# launch starship
-if command_exists starship; then
-#    if command_exists conda; then
-#        conda config --set changeps1 False
-#    fi
-#
-#    starship config conda.ignore_base false
-        #conda config --set changeps1 True
-    #starship config conda.ignore_base true
-    eval "$(starship init zsh)"
-fi
+# Start P10k
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
