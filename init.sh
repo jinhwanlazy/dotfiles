@@ -73,7 +73,6 @@ if ! command_exists cargo; then
 fi
 
 # install rust packages
-cargo install starship --locked
 cargo install fd-find
 cargo install tinty
 
@@ -103,8 +102,8 @@ git -C ~/.fzf pull
 tinty sync
 conda config --set auto_activate_base True
 conda config --set changeps1 False
-starship config conda.ignore_base true
 
 install .config/nvim
 install .zshrc
+install .p10k.zsh
 install .gitconfig
