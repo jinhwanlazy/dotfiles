@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-command_exist() {
+command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
@@ -12,13 +12,13 @@ install() {
     mkdir -p "$HOME/$(dirname $1)"
     mkdir -p "$bak_dir/$(dirname $1)"
 
-    # Check if source exists
+    # Check if source existss
     if [[ ! -e $src_dir/$1 ]]; then
-        echo "Error: Source file or directory $src_dir/$1 does not exist"
+        echo "Error: Source file or directory $src_dir/$1 does not exists"
         return 1
     fi
 
-    # If target already exists, backup
+    # If target already existss, backup
     if [ -e "$dst_dir/$1" ]; then
         if [ -L "$dst_dir/$1" ]; then
             echo "Already installed: $dst_dir/$1 -> $(readlink $dst_dir/$1)"
@@ -43,6 +43,16 @@ echo "USER: " $USER
 echo "SHELL: " $SHELL
 echo "OSTYPE: " $OSTYPE
 
+if ! command_exists tmux ; then
+    case ${OSTYPE} in
+        darwin*) ;;
+        linux*) 
+            sudo apt update
+            sudo apt install -y zsh tmux
+            ;;
+    esac
+fi
+
 # use zsh 
 if [[ ! $SHELL =~ "zsh" ]]; then
     echo "changing shell"
@@ -51,33 +61,43 @@ if [[ ! $SHELL =~ "zsh" ]]; then
     exit 1
 fi
 
-# install miniconda
-if [ ! -d ~/miniconda3 ]; then
-    mkdir -p ~/miniconda3
-    case ${OSTYPE} in
-        darwin*) curl https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -o ~/miniconda3/miniconda.sh ;;
-        linux*) wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh ;;
-    esac
-    bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-    rm ~/miniconda3/miniconda.sh
-fi
-
 # install rust
-if ! command_exist cargo; then
+if ! command_exists cargo; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
 fi
 
-# cargo install starship --locked
-if ! command_exist starship; then
-    cargo install starship --locked
-fi
+# install rust packages
+cargo install starship --locked
+cargo install fd-find
+cargo install tinty
 
-## install tinty
-if ! command_exist tinty; then
-    cargo install tinty
-    tinty sync
+# install conda
+if [ ! -d ~/miniforge3 ] || ! command_exists conda; then
+    mkdir -p ~/miniforge3
+    case ${OSTYPE} in
+        darwin*) curl https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o ~/miniforge3/miniforge.sh ;;
+        linux*) wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O ~/miniforge3/miniforge.sh ;;
+    esac
+    bash ~/miniforge3/miniforge.sh -b -u -p ~/miniforge3
+    rm ~/miniforge3/miniforge.sh
 fi
+# install python packages
+conda install python=3.10
+conda install neovim pynvim nodejs=18.20.4
+
+# install fzf
+if [[ ! -d $HOME/.fzf ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+fi
+git -C ~/.fzf pull
+~/.fzf/install --all
+
+# configs
+tinty sync
+conda config --set auto_activate_base True
+conda config --set changeps1 False
+starship config conda.ignore_base true
 
 install .config/nvim
 install .zshrc
