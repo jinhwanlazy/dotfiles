@@ -17,7 +17,7 @@ return {
                 "shfmt",
                 "clangd",
                 "clang-format",
-                "ruff-lfp",
+                "ruff",
                 "rust-analyzer",
                 "lua-language-server",
             },
@@ -67,17 +67,18 @@ return {
                     --end
                 --end
             }
-            require("lspconfig").ruff_lsp.setup {
-                on_attach = on_attach,
-                init_options = {
-                    settings = {
-                        -- Any extra CLI arguments for `ruff` go here.
-                        args = {},
-                    }
-                }
+            require("lspconfig").ruff.setup {
+                --on_attach = on_attach,
+                --init_options = {
+                    --settings = {
+                        ---- Any extra CLI arguments for `ruff` go here.
+                        --args = {},
+                    --}
+                --}
             }
             require'lspconfig'.terraformls.setup{}
             require'lspconfig'.pyright.setup{}
+            require'lspconfig'.svelte.setup{}
 
         end,
         keys = {

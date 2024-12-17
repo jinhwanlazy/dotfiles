@@ -1,25 +1,3 @@
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="yyyy-mm-dd"
-SAVEHIST=$HISTSIZE
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt INC_APPEND_HISTORY
-
-
-#precmd () {
-#  echo -n -e "\a"
-#}  
-#
 # OS specific settings
 case ${OSTYPE} in
     darwin*)
@@ -55,6 +33,34 @@ case ${OSTYPE} in
         export CHERE_INVOKING=1
     ;;
 esac
+
+# Enable p10k  instant-prompt. Should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="yyyy-mm-dd"
+SAVEHIST=$HISTSIZE
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+setopt CASE_GLOB
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt INC_APPEND_HISTORY
+setopt COMPLETE_IN_WORD
+
+
 
 
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/bin:$HOME/.bin:$PATH"
@@ -124,11 +130,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.claude ] && source ~/.claude
 
-
-# P10k
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 
 # Conda

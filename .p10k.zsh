@@ -33,9 +33,12 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     os_icon                 # os identifier
-    dir                     # current directory
     context                 # user@hostname
+    dir                     # current directory
     vcs                     # git status
+    anaconda                # conda environment (https://conda.io/)
+    status                  # exit code of the last command
+    command_execution_time  # duration of the last command
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -47,13 +50,13 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    status                  # exit code of the last command
-    command_execution_time  # duration of the last command
+    #status                  # exit code of the last command
+    #command_execution_time  # duration of the last command
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
-    anaconda                # conda environment (https://conda.io/)
+    #anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
@@ -107,7 +110,7 @@
     taskwarrior             # taskwarrior task count (https://taskwarrior.org/)
     per_directory_history   # Oh My Zsh per-directory-history local/global indicator
     # cpu_arch              # CPU architecture
-    time                    # current time
+    #time                    # current time
     # =========================[ Line #2 ]=========================
     newline
     # ip                    # ip address and bandwidth usage for a specified network interface
@@ -145,19 +148,19 @@
   typeset -g POWERLEVEL9K_ICON_BEFORE_CONTENT=true
 
   # Add an empty line before each prompt.
-  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=false
+  typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # Connect left prompt lines with these symbols.
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%244F╭─'
-  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%244F├─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%244F╰─'
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX=
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=
   # Connect right prompt lines with these symbols.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
   typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_SUFFIX=
 
   # The left end of left prompt.
-  typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=' '
+  typeset -g POWERLEVEL9K_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
   # The right end of right prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_LAST_SEGMENT_END_SYMBOL=
 
@@ -215,7 +218,7 @@
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=31
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=39
   # If directory is too long, shorten some of its segments to the shortest possible unique
   # prefix. The shortened directory can be tab-completed to the original.
   typeset -g POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique
@@ -227,7 +230,7 @@
   # segment is always an anchor.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=39
   # Display anchor directory segments in bold.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=false
   # Don't shorten directories that contain any of these files. They are anchors.
   local anchor_files=(
     .bzr
