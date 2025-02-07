@@ -43,15 +43,16 @@ echo "USER: " $USER
 echo "SHELL: " $SHELL
 echo "OSTYPE: " $OSTYPE
 
-if ! command_exists tmux ; then
-    case ${OSTYPE} in
-        darwin*) ;;
-        linux*) 
-            sudo apt update
-            sudo apt install -y zsh tmux
-            ;;
-    esac
-fi
+
+case ${OSTYPE} in
+    darwin*) ;;
+    linux*) 
+        sudo add-apt-repository ppa:git-core/ppa
+        sudo apt update
+        sudo apt install -y git
+        sudo apt install -y zsh tmux
+        ;;
+esac
 
 # use zsh 
 if [[ ! $SHELL =~ "zsh" ]]; then
@@ -60,6 +61,7 @@ if [[ ! $SHELL =~ "zsh" ]]; then
     echo "login again and relaunch the script!"
     exit 1
 fi
+
 
 # install p10k
 if [[ ! -d ~/powerlevel10k ]]; then
