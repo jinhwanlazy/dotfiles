@@ -47,7 +47,10 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' completer _complete
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+autoload -Uz compinit
+compinit -u
 setopt CASE_GLOB
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
