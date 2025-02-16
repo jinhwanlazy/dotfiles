@@ -79,14 +79,15 @@ cargo install fd-find
 cargo install tinty
 
 # install conda
-if [ ! -d ~/miniforge3 ] || ! command_exists conda; then
-    mkdir -p ~/miniforge3
-    case ${OSTYPE} in
-        darwin*) curl https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o ~/miniforge3/miniforge.sh ;;
-        linux*) wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O ~/miniforge3/miniforge.sh ;;
-    esac
-    bash ~/miniforge3/miniforge.sh -b -u -p ~/miniforge3
-    rm ~/miniforge3/miniforge.sh
+if [ ! -d ~/miniforge ] && ! command_exists conda; then
+    mkdir -p ~/miniforge
+    #case ${OSTYPE} in
+    #    darwin*) curl https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o ~/miniforge3/miniforge.sh ;;
+    #    linux*) wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O ~/miniforge3/miniforge.sh ;;
+    #esac
+    #bash ~/miniforge3/miniforge.sh -b -u -p ~/miniforge3
+    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3-$(uname)-$(uname -m).sh -u -p ~/miniforge
 fi
 
 # install python packages

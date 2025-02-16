@@ -39,6 +39,19 @@ return {
                         secret = os.getenv "ANTHROPIC_API_KEY",
                     },
                 },
+              	agents = { 
+                    { 
+                        provider = "anthropic", 
+                        name = "ChatClaude-3-5-Sonnet", 
+                        chat = true, 
+                        command = false, 
+                        -- string with model name or table with model name and parameters 
+                        model = { model = "claude-3-5-sonnet-20241022", temperature = 0, top_p = 0.5 }, 
+                        -- system prompt (use this to specify the persona/role of the AI) 
+                        system_prompt = require("gp.defaults").chat_system_prompt, 
+                    },
+                },
+
                 toggle_target = "vsplit",
                 chat_free_cursor = true,
                 chat_user_prefix = "QUERY:",
