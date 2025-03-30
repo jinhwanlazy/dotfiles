@@ -31,6 +31,9 @@ return {
     },
     {
         "jamessan/vim-gnupg",
+        config = function() 
+            vim.g.GPGPreferArmor = 1
+        end,
     },
     {
         "tpope/vim-fugitive",

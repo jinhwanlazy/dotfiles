@@ -19,6 +19,25 @@ return {
                         dismiss = "<C-h>",
                     },
                 },
+                filetypes = {
+                    yaml = false,
+                    markdown = false,
+                    help = false,
+                    gitcommit = false,
+                    gitrebase = false,
+                    hgcommit = false,
+                    svn = false,
+                    cvs = false,
+                    text = false,
+                    ["."] = false,
+                    sh = function ()
+                        if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
+                            -- disable for .env files
+                            return false
+                        end
+                        return true
+                    end,
+                },
             })
         end,
     },
@@ -33,14 +52,11 @@ return {
                 strategies = {
                     chat = {
                         adapter = "anthropic",
-                        --keymaps = {
-                            --send = {
-                                --modes = { n = "<C-s>", i = "" },
-                            --},
-                            --close = {
-                                --modes = { n = "<C-c>", i = "" },
-                            --},
-                        --},
+                        keymaps = {
+                            close = {
+                                modes = { n = "<C-x>", i = "<C-x>" },
+                            },
+                        },
                     },
                     inline = {
                         adapter = "anthropic",

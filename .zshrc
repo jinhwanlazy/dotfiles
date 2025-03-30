@@ -10,6 +10,7 @@ case ${OSTYPE} in
         # export TERM=xterm-256color
         # alias tmux="TERM=tmux-256color tmux -2"
         export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+        export GPG_TTY=$(tty)
         eval "$(/opt/homebrew/bin/brew shellenv)"
     ;;
     linux*)
@@ -92,26 +93,6 @@ export LC_CTYPE=en_US.UTF-8
 # CUDA paths
 export CUDA_HOME=/usr/local/cuda
 export LD_LIBRARY_PATH="$CUDA_HOME/lib64:$CUDA_HOME/extras/CUPTI/lib64"
-
-## Base16 Shell
-#BASE16_SHELL="$HOME/.config/base16-shell/"
-#[ -n "$PS1" ] && \
-    #[ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        #eval "$("$BASE16_SHELL/profile_helper.sh")"
-
-##if [[ $(hostname) =~ "^MacBook.*" ]]; then
-##    base16_irblack
-##elif [[ $(hostname) =~ "^DESKTOP.*" ]]; then
-##    base16_irblack
-##elif [ $(hostname) = "mato" ]; then
-##    base16_dracula
-##elif [ $(hostname) = "tiso" ]; then
-##    base16_dracula
-##elif [ $(hostname) = "knight" ]; then
-##    base16_gruvbox-dark-pale
-##else
-##    base16_one-light
-##fi
 
 command_exists() {
     command -v "$1" >/dev/null 2>&1
