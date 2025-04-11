@@ -118,7 +118,7 @@ if command_exists fd; then
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.claude ] && source ~/.claude
+[ -f ~/.env ] && source ~/.env
 
 
 
