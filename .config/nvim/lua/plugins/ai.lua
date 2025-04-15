@@ -51,6 +51,16 @@ return {
                 providers = {
                     anthropic = {
                         api_key = os.getenv "ANTHROPIC_API_KEY",
+                        params = {
+                            chat = {
+                                max_tokens = 4096,
+                                thinking = {
+                                    budget_tokens = 1024,
+                                    type = "enabled",
+                                },
+                            },
+                            command = { max_tokens = 4096 },
+                        },
                     },
                 },
                 chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>" },
@@ -58,6 +68,7 @@ return {
                 chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>s" },
                 chat_shortcut_new = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>c" },
                 show_thinking_window = false,
+                chat_free_cursor = true,
                 hooks = {
                     Complete = function(prt, params)
                         local template = [[
