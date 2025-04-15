@@ -125,25 +125,28 @@ fi
 # Conda
 CONDA_HOME=$HOME/miniforge
 if [ ! -d $CONDA_HOME ]; then
+    CONDA_HOME=$HOME/miniforge3
+fi
+if [ ! -d $CONDA_HOME ]; then
     CONDA_HOME=$HOME/miniconda3
 fi
 if [ -d $CONDA_HOME ]; then
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/jinhwanchoi/miniforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$("$CONDA_HOME/bin/conda" 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/jinhwanchoi/miniforge/etc/profile.d/conda.sh" ]; then
-        . "/Users/jinhwanchoi/miniforge/etc/profile.d/conda.sh"
+    if [ -f "$CONDA_HOME/etc/profile.d/conda.sh" ]; then
+        . "$CONDA_HOME/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/jinhwanchoi/miniforge/bin:$PATH"
+        export PATH="$CONDA_HOME/bin:$PATH"
     fi
 fi
 unset __conda_setup
 
-if [ -f "/Users/jinhwanchoi/miniforge/etc/profile.d/mamba.sh" ]; then
-    . "/Users/jinhwanchoi/miniforge/etc/profile.d/mamba.sh"
+if [ -f "$CONDA_HOME/etc/profile.d/mamba.sh" ]; then
+    . "$CONDA_HOME/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
 fi
