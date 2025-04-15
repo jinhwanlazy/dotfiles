@@ -43,9 +43,9 @@ echo "USER: " $USER
 echo "SHELL: " $SHELL
 echo "OSTYPE: " $OSTYPE
 
-
 case ${OSTYPE} in
     darwin*) ;;
+        brew install tmux reattach-to-user-namespace
     linux*) 
         sudo add-apt-repository ppa:git-core/ppa
         sudo apt update

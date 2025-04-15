@@ -20,7 +20,7 @@ case ${OSTYPE} in
         export TERM=xterm-256color
         alias tmux="TERM=tmux-256color tmux -2"
         export JAVA_HOME=/usr/lib/jvm/default-java
-        alias ls='ls -GF --color=auto'
+        alias ls='ls --color=auto'
 
         if uname -r |grep -qi 'Microsoft' ; then
             #echo "Windows subsystem for linux"
