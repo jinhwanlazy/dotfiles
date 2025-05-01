@@ -20,23 +20,35 @@ return {
                     },
                 },
                 filetypes = {
-                    yaml = false,
-                    markdown = false,
-                    help = false,
-                    gitcommit = false,
-                    gitrebase = false,
-                    hgcommit = false,
-                    svn = false,
-                    cvs = false,
-                    text = false,
-                    ["."] = false,
-                    sh = function ()
-                        if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
-                            -- disable for .env files
-                            return false
-                        end
-                        return true
-                    end,
+                    c = true,
+                    cmake = true,
+                    cpp = true,
+                    css = true,
+                    cuda = true,
+                    dart = true,
+                    gdb = true,
+                    git = true,
+                    gitattributes = true,
+                    gitcommit = true,
+                    gitconfig = true,
+                    gitignore = true,
+                    glsl = true,
+                    go = true,
+                    html = true,
+                    javascript = true,
+                    jq = true,
+                    lua = true,
+                    make = true,
+                    markdown = true,
+                    python = true,
+                    ruby = true,
+                    rust = true,
+                    sh = true,
+                    sql = true,
+                    typescript = true,
+                    typescriptreact = true,
+                    vim = true,
+                    ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
                 },
             })
         end,
