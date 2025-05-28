@@ -61,6 +61,12 @@ return {
             require("parrot").setup {
                 -- Providers must be explicitly added to make them available.
                 providers = {
+                    openai = {
+                        api_key = os.getenv "OPENAI_API_KEY",
+                    },
+                    gemini = {
+                        api_key = os.getenv "GEMINI_API_KEY",
+                    },
                     anthropic = {
                         api_key = os.getenv "ANTHROPIC_API_KEY",
                         params = {

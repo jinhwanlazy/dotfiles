@@ -117,7 +117,9 @@ if command_exists fd; then
     export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="${HOME}/.fzf/bin:${PATH}"
+source <(fzf --zsh)
+
 [ -f ~/.env ] && source ~/.env
 
 

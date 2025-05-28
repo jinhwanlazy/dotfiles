@@ -44,8 +44,9 @@ echo "SHELL: " $SHELL
 echo "OSTYPE: " $OSTYPE
 
 case ${OSTYPE} in
-    darwin*) ;;
+    darwin*) 
         brew install tmux reattach-to-user-namespace
+        ;;
     linux*) 
         sudo add-apt-repository ppa:git-core/ppa
         sudo apt update
@@ -77,6 +78,7 @@ fi
 # install rust packages
 cargo install fd-find
 cargo install tinty
+cargo install ripgrep
 
 # install conda
 if [ ! -d ~/miniforge ] && ! command_exists conda; then
