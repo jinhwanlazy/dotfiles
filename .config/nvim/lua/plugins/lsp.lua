@@ -23,12 +23,6 @@ return {
             },
         },
     },
-    { "williamboman/mason-lspconfig.nvim",
-        lazy = true, 
-        dependencies = {
-            "williamboman/mason.nvim" ,
-        },
-    },
     {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
@@ -59,7 +53,6 @@ return {
         },
         config = function(_, opts)
             require("mason").setup()
-            require("mason-lspconfig").setup()
             require("lspconfig").clangd.setup {
                 --on_attach = function(client, bufnr)
                     --if client.server_capabilities.documentSymbolProvider then
