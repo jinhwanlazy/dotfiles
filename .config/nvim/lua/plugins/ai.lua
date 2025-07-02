@@ -55,6 +55,7 @@ return {
     },
     {
         "frankroeder/parrot.nvim",
+        tag = "v1.8.0",
         dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
         opts = {},
         config = function()
@@ -84,7 +85,6 @@ return {
                 chat_shortcut_respond = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g><C-g>" },
                 chat_shortcut_delete = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>d" },
                 chat_shortcut_stop = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>s" },
-                chat_shortcut_new = { modes = { "n", "i", "v", "x" }, shortcut = "<C-g>c" },
                 show_thinking_window = false,
                 chat_free_cursor = true,
                 hooks = {

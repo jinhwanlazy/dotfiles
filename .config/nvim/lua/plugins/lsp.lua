@@ -104,5 +104,5 @@ return {
                 vim.api.nvim_input "<Esc>"
             end, mode = 'v', },
         },
-    }
+    },
 }
