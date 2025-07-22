@@ -49,8 +49,9 @@ return {
         event = "VeryLazy",
         opts = { 
             keymaps = {
-                useDefaults = true 
-            }
+                useDefaults = true,
+                disabledDefaults = { "r", "n", "C", },
+            },
         },
     },
 }

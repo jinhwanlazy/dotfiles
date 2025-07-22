@@ -20,9 +20,6 @@ vim.keymap.set('n', '<leader>i', ':set list!<cr>')
 -- nohl
 vim.keymap.set('n', '<leader>/', ':nohl<cr>')
 
--- Search for visually selected texts
-vim.keymap.set('v', '//', 'y/<C-R>"<cr>')
-
 -- Allow continuous indentations in visual mode
 vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<', '<gv')
