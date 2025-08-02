@@ -133,7 +133,6 @@ return {
             vim.keymap.set("n", "<C-g>q", "<cmd>PrtAsk<cr>", keymapOptions("Ask a question"))
             vim.keymap.set("n", "<C-g>a", "<cmd>PrtAppend<cr>", keymapOptions("Append"))
 
-            vim.keymap.set({"n", "i"}, "<C-g>c", "<cmd>PrtChatNew<cr>", keymapOptions("New Chat"))
             vim.keymap.set({"n", "i"}, "<C-g>t", "<cmd>PrtChatToggle<cr>", keymapOptions("Toggle Chat"))
             vim.keymap.set({"n", "i"}, "<C-g>f", "<cmd>PrtChatFinder<cr>", keymapOptions("Chat Finder"))
 

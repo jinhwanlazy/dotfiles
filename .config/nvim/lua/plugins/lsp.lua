@@ -70,6 +70,8 @@ return {
             require'lspconfig'.terraformls.setup{}
             require'lspconfig'.pyright.setup{}
             require'lspconfig'.svelte.setup{}
+            require'lspconfig'.ts_ls.setup{}
+            require'lspconfig'.tailwindcss.setup{}
             --require'lspconfig'.prettier.setup{}
 
         end,
