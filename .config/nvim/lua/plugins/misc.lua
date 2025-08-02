@@ -40,6 +40,7 @@ return {
     },
     {
         'fei6409/log-highlight.nvim',
+        commit = "71a5669",
         config = function()
             require('log-highlight').setup {}
         end,
