@@ -78,6 +78,7 @@ cargo install fd-find
 cargo install tinty
 cargo install ripgrep
 cargo install starship
+cargo install --git https://github.com/astral-sh/uv uv
 
 # install python packages
 pip install neovim ruff
@@ -95,7 +96,6 @@ current_node_version=""
 if command_exists node; then
     current_node_version=$(node -v | sed 's/v\([0-9]*\).*/\1/')
 fi
-echo $current_node_version
 if [[ "$current_node_version" != "$target_node_version" ]]; then
     if ! command_exists nvm; then
         # Install nvm
@@ -119,3 +119,5 @@ install .config/nvim
 install .config/starship.toml
 install .zshrc
 install .gitconfig
+install .tmux.conf
+install .tmux.airline

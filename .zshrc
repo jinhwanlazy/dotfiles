@@ -126,3 +126,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
 eval "$(starship init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
