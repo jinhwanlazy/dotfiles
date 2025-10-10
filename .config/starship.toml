@@ -1,7 +1,7 @@
 format = """
+$os\
 $username\
 $hostname\
-$os\
 $localip\
 $shlvl\
 $singularity\
@@ -93,14 +93,17 @@ $shell\
 $character"""
 
 [username]
-format = '[$user]($style)@'
+format = '[${user}@]($style)'
+show_always = true
 
 [hostname]
 format = '[$hostname$ssh_symbol]($style)'
 ssh_symbol = ''
+ssh_only = false
+style = 'yellow'
 
 [directory]
-format = '[$path]($style)[$read_only]($read_only_style) '
+format = ' [$path]($style)[$read_only]($read_only_style) '
 truncation_length = 4
 truncate_to_repo = false
 read_only = "🔒"
@@ -110,7 +113,7 @@ disabled = true
 
 [os]
 disabled = false
-format = '[$symbol]($style) '
+format = '[$symbol]($style)'
 
 [os.symbols]
 Alpaquita = " "
