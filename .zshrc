@@ -2,10 +2,8 @@
 case ${OSTYPE} in
     darwin*)
         export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/usr/local/sbin:/usr/local/texlive/2017/bin/x86_64-darwin"
-        export PATH="/usr/local/opt/qt@5.7/bin:$PATH"
         # export TERM="screen-256color"
         # alias tmux="TERM=screen-256color tmux"
-        export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
         export PATH="$HOME/Workspace/depot_tools:$PATH"
         # export TERM=xterm-256color
         # alias tmux="TERM=tmux-256color tmux -2"
@@ -14,7 +12,6 @@ case ${OSTYPE} in
         eval "$(/opt/homebrew/bin/brew shellenv)"
     ;;
     linux*)
-        export PATH="/opt/Qt5.7.0/5.7/gcc_64/bin:$PATH"
         export PATH="/usr/local/cuda/bin:$PATH"
         export PATH="/snap/bin:$PATH"
         export TERM=xterm-256color
@@ -43,7 +40,7 @@ fi
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 SAVEHIST=$HISTSIZE
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
@@ -121,6 +118,11 @@ fi
 export PATH="${HOME}/.fzf/bin:${PATH}"
 source <(fzf --zsh)
 
-[ -f ~/.env ] && source ~/.env
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+[ -s "$HOME/.env" ] && source "$HOME/.env"
+[ -s "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
+
 eval "$(starship init zsh)"
