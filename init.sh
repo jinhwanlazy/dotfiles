@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
@@ -22,7 +24,7 @@ install() {
     if [ -e "$dst_dir/$1" ]; then
         if [ -L "$dst_dir/$1" ]; then
             echo "Already installed: $dst_dir/$1 -> $(readlink $dst_dir/$1)"
-            return 1
+            return 0
         else
             echo "Backing up $dst_dir/$1 -> $bak_dir/$1"
             mv "$dst_dir/$1" "$bak_dir/${1}"
@@ -63,38 +65,22 @@ if [[ ! $SHELL =~ "zsh" ]]; then
     exit 1
 fi
 
-
-# install p10k
-if [[ ! -d ~/powerlevel10k ]]; then
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-fi
-
 # install rust
-if ! command_exists cargo; then
+if ! command_exists rustup; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
+else
+    rustup update
 fi
 
 # install rust packages
 cargo install fd-find
 cargo install tinty
 cargo install ripgrep
-
-# install conda
-if [ ! -d ~/miniforge ] && ! command_exists conda; then
-    mkdir -p ~/miniforge
-    #case ${OSTYPE} in
-    #    darwin*) curl https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-MacOSX-arm64.sh -o ~/miniforge3/miniforge.sh ;;
-    #    linux*) wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O ~/miniforge3/miniforge.sh ;;
-    #esac
-    #bash ~/miniforge3/miniforge.sh -b -u -p ~/miniforge3
-    curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
-    bash Miniforge3-$(uname)-$(uname -m).sh -u -p ~/miniforge
-fi
+cargo install starship
 
 # install python packages
-conda install python=3.10
-conda install neovim pynvim nodejs=18.20.4
+pip install neovim ruff
 
 # install fzf
 if [[ ! -d $HOME/.fzf ]]; then
@@ -105,10 +91,9 @@ git -C ~/.fzf pull
 
 # configs
 tinty sync
-conda config --set auto_activate_base True
-conda config --set changeps1 False
 
+# install .rc 
 install .config/nvim
+install .config/starship.toml
 install .zshrc
-install .p10k.zsh
 install .gitconfig
