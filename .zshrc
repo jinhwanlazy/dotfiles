@@ -102,14 +102,17 @@ if command_exists gshuc; then alias shuf='gshuf'; fi
 if command_exists vim; then alias vi='vim'; fi
 if ! command_exists python; then alias python='python3'; fi
 
-# App settings
-if command_exists tinty; then 
-    if [[ $(hostname) =~ "^MacBook.*" ]]; then
-        tinty apply base16-irblack; 
-    else
-        tinty apply base16-dracula; 
-    fi
+# colorschemes
+if command_exists tinty; then
+    case $(hostname) in
+        MacBook*|*-desktop) tinty apply base16-irblack ;;
+        *tiso*)             tinty apply base16-dracula ;;
+        *knight*)           tinty apply base16-tokyo-knight-dark ;;
+        *)                  tinty apply base16-github-dark ;;
+    esac
 fi
+
+# App settings
 if command_exists dircolors; then eval "$(dircolors)"; fi
 if command_exists fd; then
     export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
