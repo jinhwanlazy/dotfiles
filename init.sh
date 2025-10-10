@@ -78,10 +78,16 @@ cargo install fd-find
 cargo install tinty
 cargo install ripgrep
 cargo install starship
-cargo install --git https://github.com/astral-sh/uv uv
+
+if ! command_exists; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+else
+    uv self update
+fi
+
 
 # install python packages
-pip install neovim ruff
+pip3 install neovim ruff
 
 # install fzf
 if [[ ! -d $HOME/.fzf ]]; then

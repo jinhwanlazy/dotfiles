@@ -238,6 +238,7 @@ format = '\[[$symbol$branch]($style)\]'
 [gcloud]
 symbol = "  "
 format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
+disabled = true
 
 [git_branch]
 symbol = " "
