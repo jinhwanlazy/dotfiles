@@ -103,6 +103,7 @@ if command_exists nvim; then alias vim='nvim'; fi
 if command_exists xdg-open; then alias open='xdg-open'; fi
 if command_exists gshuc; then alias shuf='gshuf'; fi
 if command_exists vim; then alias vi='vim'; fi
+if ! command_exists python; then alias python='python3'; fi
 
 # App settings
 if command_exists tinty; then 
