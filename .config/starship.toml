@@ -162,9 +162,6 @@ Windows = "󰍲 "
 [buf]
 symbol = " "
 
-[git_commit]
-tag_symbol = '  '
-
 [rlang]
 symbol = "󰟔 "
 
@@ -241,10 +238,36 @@ format = '\[[$symbol$account(@$domain)(\($region\))]($style)\]'
 
 [git_branch]
 symbol = " "
-format = '\[[$symbol$branch]($style)\]'
+format = '\[[$symbol$branch]($style)'
+
+[git_commit]
+format = ' [\($hash$tag\)]($style)'
+tag_symbol = '  '
+tag_disabled = false
+tag_max_candidates = 3
+
+[git_state]
+format = ' \([$state( $progress_current/$progress_total)]($style)\)'
+
+[git_metrics]
+format = '( [+$added]($added_style))( [-$deleted]($deleted_style))'
+disabled = false
+ignore_submodules = true
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style))'
+format = '[$all_status$ahead_behind]($style)\]'
+ignore_submodules = true
+conflicted = '🔥'
+ahead = ' [⇡${count}](green)'
+behind = ' [⇣${count}](red)'
+diverged = ' DIVERGED ⇡${ahead_count}⇣${behind_count}'
+up_to_date = ''
+untracked = ' [${count}](blue)'
+stashed = ' [ ${count}](30)'
+modified = ' [!${count}](blue)'
+staged = ' [++${count}](green)' 
+renamed = '  '
+deleted = ' '
 
 [golang]
 symbol = " "
