@@ -1,5 +1,5 @@
 [user]
-	email = rick.choi@cupix.com
+	email = jinhwanlazy@gmail.com
 	name = Rick Choi
 
 [core]
@@ -8,7 +8,7 @@
 	dfw = diff --ignore-space-change
 	autocrlf = false
 	askpass = git-gui--askpass
-	excludesfile = /home/rick/.gitignore_global
+	excludesfile = ~/.gitignore_global
 
 [merge]
 	tool = vimdiff
