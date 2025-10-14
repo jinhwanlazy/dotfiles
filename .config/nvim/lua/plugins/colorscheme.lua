@@ -1,15 +1,14 @@
 return {
     {
-        "chriskempson/base16-vim",
-        lazy = false,
-        config = function()
-            vimrc_background = "~/.vimrc_background"
-            if vim.fn.filereadable(vimrc_background)
-                then
-                vim.g.base16colorspace=256
-                vim.cmd('source ' .. vimrc_background)
-            end
-            vim.g.colors_name = "16color"
+        "tinted-theming/tinted-nvim",
+        config = function() 
+            vim.opt.termguicolors = true
+            require('tinted-colorscheme').setup(nil, {
+                supports = {
+                    tinty = true,
+                    live_reload = true,
+                }
+            })
         end
     },
     {

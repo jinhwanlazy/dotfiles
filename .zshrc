@@ -105,10 +105,10 @@ if ! command_exists python; then alias python='python3'; fi
 # colorschemes
 if command_exists tinty; then
     case $(hostname) in
-        MacBook*|*-desktop) tinty apply base16-irblack ;;
+        MacBook*|*-desktop) tinty apply base24-0x96f ;;
         *tiso*)             tinty apply base16-dracula ;;
         *knight*)           tinty apply base16-tokyo-knight-dark ;;
-        *)                  tinty apply base16-github-dark ;;
+        *)                  tinty apply base24-github-dark ;;
     esac
 fi
 
