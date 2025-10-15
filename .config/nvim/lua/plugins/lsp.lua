@@ -53,27 +53,13 @@ return {
         },
         config = function(_, opts)
             require("mason").setup()
-            require("lspconfig").clangd.setup {
-                --on_attach = function(client, bufnr)
-                    --if client.server_capabilities.documentSymbolProvider then
-                        --require("nvim-navic").attach(client, bufnr)
-                    --end
-                --end
-            }
-            require("lspconfig").ruff.setup {
-                init_options = {
-                    settings = {
-                        args = {},
-                    }
-                }
-            }
-            require'lspconfig'.terraformls.setup{}
-            require'lspconfig'.pyright.setup{}
-            require'lspconfig'.svelte.setup{}
-            require'lspconfig'.ts_ls.setup{}
-            require'lspconfig'.tailwindcss.setup{}
-            --require'lspconfig'.prettier.setup{}
-
+            vim.lsp.config("clangd", {})
+            vim.lsp.config("ruff", {})
+            vim.lsp.config("terraformls", {})
+            vim.lsp.config("pyright", {})
+            vim.lsp.config("svelte", {})
+            vim.lsp.config("ts_ls", {})
+            vim.lsp.config("tailwindcss", {})
         end,
         keys = {
             { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },

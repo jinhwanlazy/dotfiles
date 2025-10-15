@@ -28,13 +28,13 @@ return {
         },
         init = function()
             vim.g.navic_silence = true
-            require("lspconfig").clangd.setup {
+            vim.lsp.config("clangd",{
                 on_attach = function(client, bufnr)
                     if client.server_capabilities.documentSymbolProvider then
                         require("nvim-navic").attach(client, bufnr)
                     end
                 end
-            }
+            })
         end,
     },
     { 

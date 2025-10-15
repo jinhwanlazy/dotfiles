@@ -117,6 +117,11 @@ else
     echo "Node.js v${target_node_version} is already installed"
 fi
 
+# zsh-nvm plugin for lazy load nvm
+if [[ ! -d $HOME/.zsh-nvm ]]; then
+    git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm
+fi
+
 # configs
 tinty sync
 
