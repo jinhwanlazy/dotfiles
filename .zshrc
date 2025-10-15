@@ -102,6 +102,16 @@ if command_exists gshuc; then alias shuf='gshuf'; fi
 if command_exists vim; then alias vi='vim'; fi
 if ! command_exists python; then alias python='python3'; fi
 
+# the activate function missing from uv
+activate() {
+  local d; d=$(cd "${1:-.}" 2>/dev/null && pwd) || { echo "❌ $1"; return 1; }
+  while :; do
+    [ -f "$d/.venv/bin/activate" ] && { . "$d/.venv/bin/activate" && echo "Activated: $d/.venv"; return; }
+    [ "$d" = "/" ] && break; d=$(dirname "$d")
+  done
+  echo ".venv/bin/activate not found (ancestors of: $PWD)"
+}
+
 # colorschemes
 if command_exists tinty; then
     case $(hostname) in
