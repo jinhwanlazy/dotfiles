@@ -96,32 +96,6 @@ fi
 git -C ~/.fzf pull
 ~/.fzf/install --all
 
-# install node v20
-target_node_version="20"
-current_node_version=""
-if command_exists node; then
-    current_node_version=$(node -v | sed 's/v\([0-9]*\).*/\1/')
-fi
-if [[ "$current_node_version" != "$target_node_version" ]]; then
-    if ! command_exists nvm; then
-        # Install nvm
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-        export NVM_DIR="$HOME/.nvm"
-        \. "$NVM_DIR/nvm.sh"
-    fi
-    
-    nvm install $target_node_version
-    nvm use $target_node_version
-    nvm alias default $target_node_version
-else
-    echo "Node.js v${target_node_version} is already installed"
-fi
-
-# zsh-nvm plugin for lazy load nvm
-if [[ ! -d $HOME/.zsh-nvm ]]; then
-    git clone https://github.com/lukechilds/zsh-nvm.git ~/.zsh-nvm
-fi
-
 # configs
 tinty sync
 

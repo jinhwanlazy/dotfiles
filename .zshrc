@@ -125,16 +125,6 @@ export PATH="${HOME}/.fzf/bin:${PATH}"
 source <(fzf --zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# nvm
-if [[ -s $HOME/.zsh-nvm/zsh-nvm.plugin.zsh ]]; then
-    export NVM_LAZY_LOAD=true
-    source $HOME/.zsh-nvm/zsh-nvm.plugin.zsh
-else
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" 
-    [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
-fi
-
 # dotenv
 [ -s "$HOME/.env" ] && source "$HOME/.env"
 
