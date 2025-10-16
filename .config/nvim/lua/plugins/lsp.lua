@@ -8,59 +8,7 @@ end
 
 return {
     {
-        "williamboman/mason.nvim",
-        build = ":MasonUpdate",
-        lazy = true, 
-        opts = {
-            ensure_installed = {
-                "stylua",
-                "shfmt",
-                "clangd",
-                "clang-format",
-                "ruff",
-                "rust-analyzer",
-                "lua-language-server",
-            },
-        },
-    },
-    {
         "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-        },
-        opts = {
-            diagnostics = {
-                underline = true,
-                update_in_insert = false,
-                virtual_text = {
-                    spacing = 8,
-                    source = "if_many",
-                    prefix = "●",
-                    -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-                    -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-                    --prefix = "icons",
-                },
-                severity_sort = true,
-            },
-            inlay_hints = { enabled = false, },
-            servers = {
-                clangd = {},
-                jsonls = {},
-                lua_ls = {},
-            },
-        },
-        config = function(_, opts)
-            require("mason").setup()
-            vim.lsp.config("clangd", {})
-            vim.lsp.config("ruff", {})
-            vim.lsp.config("terraformls", {})
-            vim.lsp.config("pyright", {})
-            vim.lsp.config("svelte", {})
-            vim.lsp.config("ts_ls", {})
-            vim.lsp.config("tailwindcss", {})
-        end,
         keys = {
             { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
             { "]d", diagnostic_goto(true), },
@@ -91,6 +39,27 @@ return {
                 } 
                 vim.api.nvim_input "<Esc>"
             end, mode = 'v', },
+        },
+    },
+    {
+        "mason-org/mason.nvim",
+        opts = {}
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = { 
+                "lua_ls",
+                "rust_analyzer",
+                "clangd",
+                "ruff",
+                "pyright",
+                "clang-format",
+            },
+        },
+        dependencies = {
+            "mason-org/mason.nvim",
+            "neovim/nvim-lspconfig",
         },
     },
     {
