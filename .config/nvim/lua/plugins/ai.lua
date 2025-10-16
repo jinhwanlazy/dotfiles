@@ -1,6 +1,7 @@
 return {
     {
         "zbirenbaum/copilot.lua",
+        commit = "4725916b1e08a0cfed8fa6d9691ccd1609a347ee",
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
