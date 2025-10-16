@@ -1,14 +1,12 @@
 return {
     {
-        "tinted-theming/tinted-nvim",
+        "tinted-theming/tinted-vim",
         config = function() 
-            vim.opt.termguicolors = true
-            require('tinted-colorscheme').setup(nil, {
-                supports = {
-                    tinty = true,
-                    live_reload = true,
-                }
-            })
+            vim.g.tinted_background_transparent = 1
+            vim.g.tinted_colorspace = 256
+            vim.g.tinted_italic = 0
+            local colorscheme = vim.fn.system({ "tinty", "current" })
+            vim.cmd.colorscheme(vim.trim(colorscheme))
         end
     },
     {
