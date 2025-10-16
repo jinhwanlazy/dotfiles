@@ -115,9 +115,9 @@ activate() {
 # colorschemes
 if command_exists tinty; then
     case $(hostname) in
-        MacBook*|*-desktop) tinty apply base24-0x96f ;;
+        MacBook*|*-desktop) tinty apply base16-irblack ;;
         *tiso*)             tinty apply base16-dracula ;;
-        *knight*)           tinty apply base16-tokyo-knight-dark ;;
+        *knight*)           tinty apply base16-tokyo-night-dark ;;
         *)                  tinty apply base24-github-dark ;;
     esac
 fi
