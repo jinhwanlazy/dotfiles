@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+set -x
 
 command_exists() {
     command -v "$1" >/dev/null 2>&1
