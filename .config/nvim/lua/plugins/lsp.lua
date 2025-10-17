@@ -48,13 +48,12 @@ return {
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { 
+            ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
                 "clangd",
                 "ruff",
                 "pyright",
-                "clang-format",
             },
         },
         dependencies = {

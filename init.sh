@@ -85,10 +85,6 @@ else
     uv self update
 fi
 
-
-# install python packages
-pip3 install neovim ruff
-
 # install fzf
 if [[ ! -d $HOME/.fzf ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
