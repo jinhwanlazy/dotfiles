@@ -61,7 +61,7 @@ return {
                 tmux = {
                     target_mode = 'current_window',
                     process_name = 'claude',
-                    switch_to_target = false,  -- don't switch to claude pane after sending
+                    switch_to_target = true,  -- switch to claude pane after sending
                     find_node_process = true, -- agent runs inside node.js process
                 },
             }
