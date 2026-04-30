@@ -99,6 +99,7 @@ tinty sync
 # install .rc 
 install .config/nvim
 install .config/starship.toml
+install .config/kitty
 install .zshrc
 install .gitconfig
 install .tmux.conf
